@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduShare | University Study Repository</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Base Styles ===== */
+        :root {
+            --primary: #002366;
+            --secondary: #008080;
+            --accent: #4da6ff;
+            --light: #f5f5f5;
+            --dark: #333;
+            --gray: #e0e0e0;
+            --text: #444;
+            --success: #28a745;
+            --error: #dc3545;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Roboto', sans-serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            -webkit-transition: color 0.3s ease;
+            -moz-transition: color 0.3s ease;
+            transition: color 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary);
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .container {
+            width: 100%;
+            padding: 0 15px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #006666;
+            -webkit-transform: translateY(-2px);
+            -moz-transform: translateY(-2px);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* ===== Header ===== */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+            -webkit-transition: width 0.3s ease;
+            -moz-transition: width 0.3s ease;
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* ===== Hero Section ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #003399 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .hero .btn {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .hero .btn:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        .hero .btn-outline {
+            background-color: transparent;
+            color: white;
+            border-color: white;
+        }
+        
+        .hero .btn-outline:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* ===== Year Toggle ===== */
+        .year-toggle {
+            background-color: white;
+            padding: 20px;
+            margin: 40px auto;
+            max-width: 600px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .year-toggle h2 {
+            margin-bottom: 15px;
+        }
+        
+        .toggle-container {
+            display: inline-flex;
+            background-color: var(--light);
+            border-radius: 50px;
+            padding: 5px;
+            margin: 0 auto;
+        }
+        
+        .toggle-btn {
+            padding: 8px 25px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text);
+            border-radius: 50px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn.active {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* ===== Term Filter ===== */
+        .term-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0 40px;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: white;
+            border: 1px solid var(--gray);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        /* ===== Course Grid ===== */
+        .course-grid {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px 30px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin: 0 15px 30px;
+            overflow: hidden;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--accent);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .course-img {
+            height: 160px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+        }
+        
+        .course-content {
+            padding: 20px;
+        }
+        
+        .course-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .course-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .course-description {
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+        
+        .course-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid var(--gray);
+        }
+        
+        .resource-count {
+            background-color: var(--light);
+            color: var(--primary);
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* ===== Recently Added ===== */
+        .recent-section {
+            margin: 60px 0;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-header h2 {
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .recent-items {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .recent-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin: 0 10px 20px;
+            padding: 20px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .recent-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+        
+        .recent-type {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .recent-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        .recent-meta {
+            font-size: 13px;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        .timestamp {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        /* ===== Testimonials ===== */
+        .testimonials {
+            margin: 60px 0;
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(77,166,255,0.2) 0%, rgba(77,166,255,0) 70%);
+        }
+        
+        .testimonials:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(77,166,255,0.1) 0%, rgba(77,166,255,0) 70%);
+        }
+        
+        .testimonials h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .testimonials h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .testimonial-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 -15px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            color: var(--text);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 0 15px 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 60px;
+            color: rgba(0,131,143,0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .testimonial-date {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* ===== Submission Form ===== */
+        .form-section {
+            margin: 60px 0;
+        }
+        
+        .form-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            margin-bottom: 10px;
+        }
+        
+        .form-header p {
+            color: #666;
+        }
+        
+        .form-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .form-progress:before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--gray);
+            z-index: 1;
+        }
+        
+        .progress-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--gray);
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            margin-bottom: 5px;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        
+        .progress-step.active .step-number {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .step-label {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .progress-step.active .step-label {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray);
+            border-radius: 6px;
+            font-size: 16px;
+            font-family: 'Poppins', sans-serif;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(0,128,128,0.1);
+        }
+        
+        .form-control:required:invalid {
+            border-color: var(--error);
+        }
+        
+        .form-control:required:valid {
+            border-color: var(--success);
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .radio-option input {
+            margin-right: 8px;
+        }
+        
+        .file-upload {
+            border: 2px dashed var(--gray);
+            padding: 30px;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            background-color: rgba(0,131,143,0.05);
+        }
+        
+        .file-upload:hover {
+            border-color: var(--secondary);
+            background-color: rgba(0,131,143,0.1);
+        }
+        
+        .file-upload-icon {
+            font-size: 40px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .file-upload-text {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .file-upload-subtext {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .form-navigation .btn {
+            min-width: 120px;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light);
+            border-top: 5px solid var(--secondary);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            -webkit-animation: spin 1s linear infinite;
+            -moz-animation: spin 1s linear infinite;
+            animation: spin 1s linear infinite;
+        }
+        
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        
+        @-moz-keyframes spin {
+            0% { -moz-transform: rotate(0deg); }
+            100% { -moz-transform: rotate(360deg); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .success-message {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+        
+        .success-icon {
+            font-size: 60px;
+            color: var(--success);
+            margin-bottom: 20px;
+        }
+        
+        /* ===== Footer ===== */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            width: 23%;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.8);
+            -webkit-transition: all 0.3s ease;
+            -moz-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-bottom p {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+        }
+        
+        /* ===== Print Styles ===== */
+        @media print {
+            header, nav, .hero, .year-toggle, .term-filter, footer, .btn {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+                color: black;
+                font-size: 12pt;
+                padding: 20px;
+            }
+            
+            .container {
+                padding: 0;
+            }
+            
+            .course-card, .recent-card, .testimonial-card, .form-container {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                page-break-inside: avoid;
+                margin-bottom: 20px;
+            }
+            
+            a::after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                font-weight: normal;
+                color: #666;
+            }
+            
+            .course-img, .recent-type {
+                background-color: #f0f0f0 !important;
+                color: #333 !important;
+            }
+        }
+        
+        /* ===== Responsive Layout ===== */
+        /* Mobile */
+        @media (max-width: 767px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .hero .btn {
+                width: 100%;
+            }
+            
+            .course-card, .recent-card, .testimonial-card, .footer-column {
+                width: 100%;
+                margin: 0 0 20px;
+            }
+            
+            .form-progress {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .form-progress:before {
+                display: none;
+            }
+            
+            .progress-step {
+                flex-direction: row;
+                gap: 10px;
+            }
+            
+            .step-label {
+                font-size: 14px;
+            }
+        }
+        
+        /* Tablet */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .container {
+                max-width: 720px;
+            }
+            
+            .course-card {
+                width: calc(50% - 30px);
+            }
+            
+            .recent-card {
+                width: calc(50% - 20px);
+            }
+            
+            .testimonial-card {
+                width: calc(50% - 30px);
+            }
+            
+            .footer-column {
+                width: 48%;
+            }
+        }
+        
+        /* Desktop */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1200px;
+            }
+            
+            .course-card {
+                width: calc(33.333% - 30px);
+            }
+            
+            .recent-card {
+                width: calc(33.333% - 20px);
+            }
+            
+            .testimonial-card {
+                width: calc(33.333% - 30px);
+            }
+        }
+        
+        /* Float-based grid fallback */
+        .row {
+            margin: 0 -15px;
+            overflow: hidden;
+        }
+        
+        .col {
+            float: left;
+            padding: 0 15px;
+        }
+        
+        .col-4 {
+            width: 33.333%;
+        }
+        
+        .col-6 {
+            width: 50%;
+        }
+        
+        .col-12 {
+            width: 100%;
+        }
+        
+        @media (max-width: 767px) {
+            .col {
+                width: 100%;
+                float: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">Edu<span>Share</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#submit">Submit</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Share Knowledge, Empower Learning</h1>
+            <p>Access and contribute to our growing repository of university study materials. Together we can build a comprehensive resource for academic success.</p>
+            <div class="hero-buttons">
+                <a href="#courses" class="btn">Browse Materials</a>
+                <a href="#submit" class="btn btn-outline">Contribute Now</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="courses">
+            <div class="year-toggle">
+                <h2>Browse Study Materials</h2>
+                <div class="toggle-container">
+                    <button class="toggle-btn active">2022-2023</button>
+                    <button class="toggle-btn">2021-2022</button>
+                    <button class="toggle-btn">2023-2024</button>
+                </div>
+            </div>
+
+            <div class="term-filter">
+                <button class="filter-btn active">All Terms</button>
+                <button class="filter-btn">Fall</button>
+                <button class="filter-btn">Spring</button>
+                <button class="filter-btn">Summer</button>
+            </div>
+
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-badge">New</div>
+                    <div class="course-img" style="background-color: #041931;">
+                        CS
+                    </div>
+                    <div class="course-content">
+                        <h3>Data Structures & Algorithms</h3>
+                        <div class="course-meta">
+                            <span>Prof. Johnson</span>
+                            <span>Fall 2022</span>
+                        </div>
+                        <div class="course-description">
+                            Fundamental data structures and algorithm analysis. Arrays, linked lists, trees, graphs, and algorithm design techniques.
+                        </div>
+                        <div class="course-footer">
+                            <a href="#">View Materials</a>
+                            <span class="resource-count">32 resources</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-img" style="background-color: #2E7D32;">
+                        BIO
+                    </div>
+                    <div class="course-content">
+                        <h3>Molecular Biology</h3>
+                        <div class="course-meta">
+                            <span>Prof. Chen</span>
+                            <span>Spring 2023</span>
+                        </div>
+                        <div class="course-description">
+                            Structure and function of macromolecules, DNA replication, transcription, translation, and regulation of gene expression.
+                        </div>
+                        <div class="course-footer">
+                            <a href="#">View Materials</a>
+                            <span class="resource-count">28 resources</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-img" style="background-color: #6A1B9A;">
+                        MTH
+                    </div>
+                    <div class="course-content">
+                        <h3>Linear Algebra</h3>
+                        <div class="course-meta">
+                            <span>Prof. Rodriguez</span>
+                            <span>Fall 2022</span>
+                        </div>
+                        <div class="course-description">
+                            Vector spaces, linear transformations, matrices, determinants, eigenvalues, and applications to computer science and engineering.
+                        </div>
+                        <div class="course-footer">
+                            <a href="#">View Materials</a>
+                            <span class="resource-count">21 resources</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-img" style="background-color: #C62828;">
+                        PHY
+                    </div>
+                    <div class="course-content">
+                        <h3>Electromagnetism</h3>
+                        <div class="course-meta">
+                            <span>Prof. Williams</span>
+                            <span>Spring 2023</span>
+                        </div>
+                        <div class="course-description">
+                            Electric and magnetic fields, Maxwell's equations, electromagnetic waves, and applications to modern technology.
+                        </div>
+                        <div class="course-footer">
+                            <a href="#">View Materials</a>
+                            <span class="resource-count">18 resources</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-badge">Updated</div>
+                    <div class="course-img" style="background-color: #EF6C00;">
+                        ECO
+                    </div>
+                    <div class="course-content">
+                        <h3>Econometrics</h3>
+                        <div class="course-meta">
+                            <span>Prof. Smith</span>
+                            <span>Fall 2021</span>
+                        </div>
+                        <div class="course-description">
+                            Application of statistical methods to economic data. Regression analysis, hypothesis testing, and model building.
+                        </div>
+                        <div class="course-footer">
+                            <a href="#">View Materials</a>
+                            <span class="resource-count">24 resources</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-img" style="background-color: #00838F;">
+                        PSY
+                    </div>
+                    <div class="course-content">
+                        <h3>Cognitive Psychology</h3>
+                        <div class="course-meta">
+                            <span>Prof. Lee</span>
+                            <span>Spring 2022</span>
+                        </div>
+                        <div class="course-description">
+                            Study of mental processes including perception, memory, reasoning, and problem solving from a psychological perspective.
+                        </div>
+                        <div class="course-footer">
+                            <a href="#">View Materials</a>
+                            <span class="resource-count">15 resources</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-section">
+            <div class="section-header">
+                <h2>Recently Added</h2>
+                <a href="#" class="btn btn-outline">View All</a>
+            </div>
+            
+            <div class="recent-items">
+                <div class="recent-card">
+                    <div class="recent-type">PDF</div>
+                    <div class="recent-details">
+                        <h4>CS 201 - Lecture 15 Slides</h4>
+                        <p>Advanced Graph Algorithms and Applications</p>
+                        <div class="recent-meta">
+                            <span>Prof. Johnson</span> • 
+                            <span class="timestamp">2 hours ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-card">
+                    <div class="recent-type">VID</div>
+                    <div class="recent-details">
+                        <h4>BIO 305 - Lab Demonstration</h4>
+                        <p>PCR Techniques and Gel Electrophoresis</p>
+                        <div class="recent-meta">
+                            <span>Prof. Chen</span> • 
+                            <span class="timestamp">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-card">
+                    <div class="recent-type">PDF</div>
+                    <div class="recent-details">
+                        <h4>MTH 210 - Problem Set 7 Solutions</h4>
+                        <p>Eigenvalues and Diagonalization</p>
+                        <div class="recent-meta">
+                            <span>Prof. Rodriguez</span> • 
+                            <span class="timestamp">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-card">
+                    <div class="recent-type">ZIP</div>
+                    <div class="recent-details">
+                        <h4>PHY 202 - Lab Dataset</h4>
+                        <p>Electromagnetic Wave Propagation Experiments</p>
+                        <div class="recent-meta">
+                            <span>Prof. Williams</span> • 
+                            <span class="timestamp">5 days ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-card">
+                    <div class="recent-type">PDF</div>
+                    <div class="recent-details">
+                        <h4>ECO 101 - Midterm Review Notes</h4>
+                        <p>Comprehensive Study Guide for Chapters 1-6</p>
+                        <div class="recent-meta">
+                            <span>Prof. Smith</span> • 
+                            <span class="timestamp">1 week ago</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recent-card">
+                    <div class="recent-type">DOC</div>
+                    <div class="recent-details">
+                        <h4>PSY 150 - Research Paper Template</h4>
+                        <p>APA Format Guidelines and Examples</p>
+                        <div class="recent-meta">
+                            <span>Prof. Lee</span> • 
+                            <span class="timestamp">2 weeks ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <h2>Student Experiences</h2>
+                
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "The organized lecture notes and past exams on EduShare were invaluable during my finals preparation. I aced my Data Structures course thanks to these resources!"
+                        </div>
+                        <div class="testimonial-author">- Alex R., Computer Science</div>
+                        <div class="testimonial-date">Fall 2023</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "As a transfer student, I was behind in Molecular Biology. The video explanations and lab demos helped me catch up quickly. This platform is a game-changer!"
+                        </div>
+                        <div class="testimonial-author">- Priya K., Biology</div>
+                        <div class="testimonial-date">Spring 2023</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "The problem set solutions for Linear Algebra saved me countless hours. Seeing different approaches to solving the same problem deepened my understanding significantly."
+                        </div>
+                        <div class="testimonial-author">- Jamal W., Mathematics</div>
+                        <div class="testimonial-date">Fall 2022</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "I contributed my econometrics notes and was amazed by how many students found them helpful. The upvote system shows your impact on the community."
+                        </div>
+                        <div class="testimonial-author">- Sofia M., Economics</div>
+                        <div class="testimonial-date">Spring 2022</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "The cognitive psychology flashcards were perfect for quick review sessions before class. I've shared them with my study group and we've all improved our grades."
+                        </div>
+                        <div class="testimonial-author">- Ethan T., Psychology</div>
+                        <div class="testimonial-date">Fall 2021</div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "When our professor's explanations weren't clicking for me, the alternative explanations from different contributors on EduShare made all the difference in electromagnetism."
+                        </div>
+                        <div class="testimonial-author">- Nia B., Physics</div>
+                        <div class="testimonial-date">Spring 2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section" id="submit">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Contribute Study Materials</h2>
+                    <p>Help fellow students by sharing your notes, slides, or other course materials</p>
+                </div>
+                
+                <div class="form-progress">
+                    <div class="progress-step active">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Course Info</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Content Details</div>
+                    </div>
+                    <div class="progress-step">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Upload</div>
+                    </div>
+                </div>
+                
+                <form id="submission-form">
+                    <!-- Step 1: Course Information -->
+                    <div class="form-step active" id="step1">
+                        <div class="form-group">
+                            <label for="course-name">Course Name</label>
+                            <input type="text" id="course-name" class="form-control" placeholder="e.g. Introduction to Computer Science" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="course-code">Course Code</label>
+                            <input type="text" id="course-code" class="form-control" placeholder="e.g. CS101" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="professor">Professor</label>
+                            <input type="text" id="professor" class="form-control" placeholder="Professor's name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="term">Term</label>
+                            <select id="term" class="form-control" required>
+                                <option value="">Select Term</option>
+                                <option value="fall">Fall</option>
+                                <option value="spring">Spring</option>
+                                <option value="summer">Summer</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <select id="year" class="form-control" required>
+                                <option value="">Select Year</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2024">2024</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('step1').classList.remove('active'); document.getElementById('step2').classList.add('active'); updateProgress(2);">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Content Details -->
+                    <div class="form-step" id="step2">
+                        <div class="form-group">
+                            <label>Content Type</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="content-type" value="lecture-notes" required> Lecture Notes
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="content-type" value="slides"> Slides
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="content-type" value="video"> Video
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="content-type" value="assignment"> Assignment
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="content-type" value="other"> Other
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" class="form-control" rows="4" placeholder="Briefly describe the content (topics covered, special notes, etc.)" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tags">Tags (optional)</label>
+                            <input type="text" id="tags" class="form-control" placeholder="e.g. midterm-review, chapter-4, solutions">
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('step2').classList.remove('active'); document.getElementById('step1').classList.add('active'); updateProgress(1);">Previous</button>
+                            <button type="button" class="btn" onclick="document.getElementById('step2').classList.remove('active'); document.getElementById('step3').classList.add('active'); updateProgress(3);">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: File Upload -->
+                    <div class="form-step" id="step3">
+                        <div class="form-group">
+                            <label>Upload Files</label>
+                            <div class="file-upload">
+                                <div class="file-upload-icon">↑</div>
+                                <div class="file-upload-text">Click to browse or drag and drop files here</div>
+                                <div class="file-upload-subtext">Accepted formats: PDF, PPT, DOC, MP4, ZIP (Max 50MB)</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Your Email (optional)</label>
+                            <input type="email" id="email" class="form-control" placeholder="Used only for submission confirmation">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" name="agree" required> I confirm that I have the right to share these materials and they comply with academic integrity policies
+                            </label>
+                        </div>
+                        
+                        <div class="form-navigation">
+                            <button type="button" class="btn btn-outline" onclick="document.getElementById('step3').classList.remove('active'); document.getElementById('step2').classList.add('active'); updateProgress(2);">Previous</button>
+                            <button type="submit" class="btn">Submit</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div class="loading" id="loading">
+                        <div class="loading-spinner"></div>
+                        <p>Uploading your materials...</p>
+                    </div>
+                    
+                    <!-- Success Message -->
+                    <div class="success-message" id="success">
+                        <div class="success-icon">✓</div>
+                        <h3>Thank you for your contribution!</h3>
+                        <p>Your materials will be reviewed and added to the repository soon.</p>
+                        <a href="#courses" class="btn" style="margin-top: 20px;">Browse More Materials</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer id="about">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>EduShare</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Browse Courses</a></li>
+                        <li><a href="#">Submission Guidelines</a></li>
+                        <li><a href="#">Quality Standards</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="#">Student Forum</a></li>
+                        <li><a href="#">Study Groups</a></li>
+                        <li><a href="#">Top Contributors</a></li>
+                        <li><a href="#">Feedback</a></li>
+                        <li><a href="#">Suggest a Feature</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Academic Integrity</a></li>
+                        <li><a href="#">Copyright</a></li>
+                        <li><a href="#">DMCA</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 EduShare. All rights reserved. Designed for academic collaboration.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Non-functional JavaScript simulation -->
+    <script type="text/plain">
+        // These functions would be implemented with real JavaScript
+        function updateProgress(step) {
+            // Update progress indicators
+        }
+        
+        document.getElementById('submission-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('loading').style.display = 'block';
+            
+            // Simulate upload
+            setTimeout(function() {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('success').style.display = 'block';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
